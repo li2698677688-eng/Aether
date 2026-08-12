@@ -1,0 +1,13 @@
+packages:
+  - "."
+
+overrides:
+  undici: "7.29.0"
+
+allowBuilds:
+  esbuild: true
+  workerd: true
+
+onlyBuiltDependencies:
+  - esbuild
+  - workerd

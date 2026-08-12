@@ -1,0 +1,8 @@
+Aether
+Copyright 2026 Hongfei Li
+
+This product includes software developed by ion-design and ditto.site
+contributors (https://github.com/ion-design/ditto.site), used under the MIT
+License. The compiler image fetches the pinned upstream revision documented in
+services/remix-compiler/Dockerfile. See THIRD_PARTY_NOTICES.md for the complete
+license notice.

@@ -1,0 +1,50 @@
+name: Quality
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+concurrency:
+  group: quality-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  release-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v6
+        with:
+          version: 11.21.0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22.13.1
+          cache: pnpm
+
+      - name: Install app dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Install worker dependencies
+        run: pnpm --dir workers/analyzer install --frozen-lockfile
+
+      - name: Install compiler edge dependencies
+        run: pnpm --dir services/remix-compiler/cloudflare install --frozen-lockfile
+
+      - name: Run release gate
+        run: pnpm check:release
+
+      - name: Scan public tree and reachable history
+        if: github.repository == 'li2698677688-eng/Aether'
+        run: pnpm public:scan -- --history

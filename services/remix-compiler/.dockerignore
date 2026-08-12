@@ -1,0 +1,5 @@
+.git
+cloudflare/node_modules
+cloudflare/.wrangler
+local-data
+*.log

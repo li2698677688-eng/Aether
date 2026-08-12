@@ -1,0 +1,23 @@
+{
+  "name": "designfeed-remix-compiler-edge",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@11.21.0",
+  "engines": {
+    "node": ">=22.13.0",
+    "pnpm": ">=11.21.0"
+  },
+  "scripts": {
+    "deploy": "wrangler deploy",
+    "dry-run": "wrangler deploy --dry-run",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@cloudflare/containers": "0.3.7"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "5.20260804.1",
+    "typescript": "5.9.3",
+    "wrangler": "4.119.0"
+  }
+}

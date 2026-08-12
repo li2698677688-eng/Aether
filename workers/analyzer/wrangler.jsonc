@@ -1,0 +1,25 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "designfeed-analyzer",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-08-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "browser": { "binding": "BROWSER" },
+  "queues": {
+    "producers": [{ "binding": "ANALYSIS_QUEUE", "queue": "designfeed-analysis" }],
+    "consumers": [{
+      "queue": "designfeed-analysis",
+      "max_batch_size": 1,
+      "max_batch_timeout": 2,
+      "max_retries": 3,
+      "retry_delay": 30,
+      "dead_letter_queue": "designfeed-analysis-dlq"
+    }]
+  },
+  "vars": {
+    "APP_BASE_URL": "https://designfeed-nine.vercel.app",
+    // 部署前改成自托管编译器的 HTTPS Origin；API Key 使用 `wrangler secret put`。
+    "REMIX_COMPILER_URL": "https://compiler.designfeed.invalid",
+    "REMIX_COMPILER_REVISION": "3860a1a3a340069eabbfc550fd49807dd10f4f2c"
+  }
+}

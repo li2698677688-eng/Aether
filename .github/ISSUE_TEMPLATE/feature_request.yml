@@ -1,0 +1,30 @@
+name: Feature proposal
+description: Propose a focused improvement before implementation.
+title: "[Proposal]: "
+labels:
+  - enhancement
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: Which user or maintainer problem is not solved today?
+    validations:
+      required: true
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Desired outcome
+      description: Describe observable success without prescribing an architecture.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence or examples
+      description: Link public examples or describe real use. Do not upload third-party screenshots without redistribution rights.
+  - type: textarea
+    id: risks
+    attributes:
+      label: Trust boundaries and tradeoffs
+      description: Note URL, browser, model, code execution, credential, privacy, or supply-chain implications.

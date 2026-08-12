@@ -1,0 +1,58 @@
+name: Bug report
+description: Report a reproducible Aether or DesignFeed problem.
+title: "[Bug]: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: For security vulnerabilities, stop and use the private Security reporting channel instead.
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Expected outcome
+      description: What were you trying to accomplish and what should have happened?
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+      description: What happened instead? Include the visible error without secrets.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Reproduction
+      description: Provide the smallest reliable sequence and a public sample URL if needed.
+      placeholder: |
+        1. Open …
+        2. Select …
+        3. Observe …
+    validations:
+      required: true
+  - type: input
+    id: revision
+    attributes:
+      label: Aether version or commit
+      placeholder: v0.1.0 or a public commit SHA
+    validations:
+      required: true
+  - type: dropdown
+    id: surface
+    attributes:
+      label: Surface
+      options:
+        - Web application
+        - Analyzer Worker
+        - Remix Compiler
+        - Database migration
+        - Documentation or contributor workflow
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Browser, operating system, Node version, and deployment mode as relevant.
