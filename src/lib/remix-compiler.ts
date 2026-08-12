@@ -297,7 +297,10 @@ export function createRemixCompilerClient(config: RemixCompilerConfig, fetcher: 
       if (declaredBytes > 500_000_000) throw new Error("Remix 代码包超过 500MB 上限");
       const bytes = new Uint8Array(await response.arrayBuffer());
       if (bytes.byteLength > 500_000_000) throw new Error("Remix 代码包超过 500MB 上限");
-      const digest = await crypto.subtle.digest("SHA-256", bytes.buffer as ArrayBuffer);
+      // Pass the view rather than its backing buffer. Node 22's WebCrypto
+      // rejects ArrayBuffers created by a different realm (for example a
+      // Response inside jsdom), while BufferSource views are accepted.
+      const digest = await crypto.subtle.digest("SHA-256", bytes);
       const computedSha256 = [...new Uint8Array(digest)].map((byte) => byte.toString(16).padStart(2, "0")).join("");
       const declaredSha256 = response.headers.get("x-content-sha256");
       if (declaredSha256 && (!/^[a-f0-9]{64}$/i.test(declaredSha256) || declaredSha256.toLowerCase() !== computedSha256)) {
