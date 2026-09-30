@@ -39,7 +39,7 @@
   "dependencies": {
     "@base-ui/react": "^1.7.0",
     "@supabase/ssr": "^0.12.4",
-    "@supabase/supabase-js": "^2.112.0",
+    "@supabase/supabase-js": "^2.112.2",
     "@tanstack/react-virtual": "^3.14.9",
     "@vercel/speed-insights": "2.0.0",
     "class-variance-authority": "^0.7.1",
